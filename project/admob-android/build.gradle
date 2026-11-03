@@ -16,6 +16,6 @@ android
 dependencies
 {
 	implementation project(':deps:extension-api')
-	implementation('com.google.android.gms:play-services-ads:+')
+	implementation('com.google.android.libraries.ads.mobile.sdk:ads-mobile-sdk:1.6.0')
 	implementation('com.google.android.ump:user-messaging-platform:+')
 }

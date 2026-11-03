@@ -14,11 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowMetrics;
 import android.widget.RelativeLayout;
-import com.google.android.gms.ads.appopen.*;
-import com.google.android.gms.ads.initialization.*;
-import com.google.android.gms.ads.interstitial.*;
-import com.google.android.gms.ads.rewarded.*;
-import com.google.android.gms.ads.*;
+
+import com.google.android.libraries.ads.mobile.sdk.MobileAds;
+import com.google.android.libraries.ads.mobile.sdk.initialization.InitializationConfig;
+
 import com.google.android.ump.*;
 import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
@@ -160,10 +159,12 @@ public class Admob extends Extension
 
 		MobileAds.setRequestConfiguration(configuration.build());
 
-		MobileAds.initialize(mainContext, new OnInitializationCompleteListener()
-		{
+		MobileAds.initialize(
+				mainContext, 
+				new InitializationConfig.Builder("::ENV_ADMOB_APPID::").build(),
+				new OnAdapterInitializationCompleteListener() {
 			@Override
-			public void onInitializationComplete(InitializationStatus initializationStatus)
+			public void onAdapterInitializationComplete(InitializationStatus initializationStatus)
 			{
 				if (_callback != null) 
 					_callback.call("onStatus", new Object[]{ "INIT_OK", MobileAds.getVersion().toString() });
