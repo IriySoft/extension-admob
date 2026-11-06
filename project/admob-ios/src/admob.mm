@@ -12,6 +12,19 @@ static GADBannerView *_bannerView = nil;
 static int _currentAlign = 0;
 static char _message[128] = "";//need this to pass message from ios to haxe, local variable gets lost in transition
 
+static void dispatchCallback(const char * event, const char * message) {
+	if (_admobCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			try {
+				_admobCallback(event, message);
+ 			}
+			catch (...) {
+				NSLog(@"AdMob: Dispatch callback exception occured");
+			}
+		});
+	}
+}
+
 static void alignBanner(GADBannerView *bannerView, int align)
 {
 	if (!bannerView)

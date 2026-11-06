@@ -50,7 +50,7 @@ public class Admob extends Extension
 					catch(Exception e) {Log.e(TAG, "CallBack Exception " + e.toString());}
 				}
 			}
-    });
+ 		});
 	}
 
 	public static void init(final boolean testingAds, final boolean childDirected, final boolean enableRDP, HaxeObject callback)
