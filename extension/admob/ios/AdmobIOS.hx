@@ -229,7 +229,7 @@ class AdmobIOS
 	public static function dispatchEvent(event:String, data:String):Void
 	{
 		if(_callback != null)
-			_callback(event, data);
+			haxe.Timer.delay(()->_callback(event, data), 0);
 	}
 	
 	/**
