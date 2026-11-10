@@ -272,7 +272,7 @@ class AdmobAndroid
 	public static function dispatchEvent(event:String, data:String):Void
 	{
 		if(_callback != null)
-			haxe.Timer.delay(() -> _callback(event, data), 0);
+			haxe.Timer.delay(()->_callback(event, data), 1);
 	}
 	
 	/**

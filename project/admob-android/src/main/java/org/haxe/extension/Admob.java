@@ -26,7 +26,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
+//import java.util.Arrays;
 //https://developers.google.com/admob/android/quick-start?hl=en
 
 public class Admob extends Extension
@@ -92,7 +92,7 @@ public class Admob extends Extension
 										@Override
 										public void onConsentFormDismissed(FormError formError)
 										{
-											if (formError == null && _callback != null) {
+											if (formError == null) {
 												dispatchCallback("onStatus", new Object[]{ "CONSENT_SUCCESS", "Consent form dismissed successfully." });
 											}	else {
 												dispatchCallback("onStatus", new Object[]{ "CONSENT_FAIL", formError.getMessage() });
@@ -116,7 +116,6 @@ public class Admob extends Extension
 				else
 				{
 					dispatchCallback("onStatus", new Object[]{ "CONSENT_NOT_REQUIRED", "Consent form not required or available." });
-
 					initMobileAds(testingAds, childDirected, enableRDP);
 				}
 			}
@@ -533,7 +532,7 @@ public class Admob extends Extension
 			public void run()
 			{
 				UserMessagingPlatform.showPrivacyOptionsForm(mainActivity, formError -> {
-					if (formError != null && _callback != null)
+					if (formError != null)
 						dispatchCallback("onStatus", new Object[] { "CONSENT_FAIL", String.format("%s: %s", formError.getErrorCode(), formError.getMessage())});
 				});
 			}
