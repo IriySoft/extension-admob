@@ -61,7 +61,8 @@ static void alignBanner(GADBannerView *bannerView, int align)
 {
 	if (_bannerView)
 	{
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+		dispatch_async(dispatch_get_main_queue(), ^{
   			alignBanner(_bannerView, _currentAlign);
 		});
 	}
@@ -435,7 +436,7 @@ void initAdmob(bool testingAds, bool childDirected, bool enableRDP, AdmobCallbac
 					}
 					else
 					{
-						dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+						dispatch_async(dispatch_get_main_queue(), ^{
 							[form presentFromViewController:UIApplication.sharedApplication.keyWindow.rootViewController completionHandler:^(NSError *_Nullable error)
 							{
 								if (loadError)
@@ -473,7 +474,7 @@ void showAdmobBanner(const char *id, int size, int align)
 
 	_currentAlign = align;
 
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 
 		UIViewController *rootVC = UIApplication.sharedApplication.keyWindow.rootViewController;
 
@@ -533,7 +534,7 @@ void showAdmobBanner(const char *id, int size, int align)
 
 void hideAdmobBanner()
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (_bannerView != nil)
 		{
 			[_bannerView removeFromSuperview];
@@ -544,7 +545,7 @@ void hideAdmobBanner()
 
 void loadAdmobInterstitial(const char *id)
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (!interstitialDelegate)
 			interstitialDelegate = [[InterstitialDelegate alloc] init];
 
@@ -554,7 +555,7 @@ void loadAdmobInterstitial(const char *id)
 
 void showAdmobInterstitial()
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (interstitialDelegate)
 			[interstitialDelegate show];
 		else 
@@ -564,7 +565,7 @@ void showAdmobInterstitial()
 
 void loadAdmobRewarded(const char *id)
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (!rewardedDelegate)
 			rewardedDelegate = [[RewardedDelegate alloc] init];
 
@@ -574,7 +575,7 @@ void loadAdmobRewarded(const char *id)
 
 void showAdmobRewarded()
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (rewardedDelegate)
 			[rewardedDelegate show];
 		else 
@@ -584,7 +585,7 @@ void showAdmobRewarded()
 
 void loadAdmobAppOpen(const char *id)
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (!appOpenDelegate)
 			appOpenDelegate = [[AppOpenAdDelegate alloc] init];
 
@@ -594,7 +595,7 @@ void loadAdmobAppOpen(const char *id)
 
 void showAdmobAppOpen()
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		if (appOpenDelegate)
 			[appOpenDelegate show];
 		else 
@@ -646,7 +647,7 @@ bool isAdmobPrivacyOptionsRequired()
 
 void showAdmobPrivacyOptionsForm()
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		[UMPConsentForm presentPrivacyOptionsFormFromViewController:UIApplication.sharedApplication.keyWindow.rootViewController completionHandler:^(NSError *_Nullable formError)
 		{
 			 if (formError)
