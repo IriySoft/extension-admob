@@ -1,4 +1,5 @@
 project/obj/
+project/admob-ios/frameworks/
 .DS_Store
 
 # Examples of other files you might choose to ignore
