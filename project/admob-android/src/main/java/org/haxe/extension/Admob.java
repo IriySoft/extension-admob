@@ -26,6 +26,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 //import java.util.Arrays;
 //https://developers.google.com/admob/android/quick-start?hl=en
 
@@ -173,6 +174,17 @@ public class Admob extends Extension
 			@Override
 			public void onInitializationComplete(InitializationStatus initializationStatus)
 			{
+				// Check each adapter's initialization status.
+				Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
+				for (Map.Entry<String, AdapterStatus> entry : statusMap.entrySet()) {
+					String adapterClass = entry.getKey();
+					AdapterStatus status = entry.getValue();
+					Log.d(
+							TAG,
+							String.format(
+									"Adapter name: %s, Description: %s, Latency: %d",
+									adapterClass, status.getDescription(), status.getLatency()));
+				}				
 				dispatchCallback("onStatus", new Object[]{ "INIT_OK", MobileAds.getVersion().toString() });
 			}
 		});
