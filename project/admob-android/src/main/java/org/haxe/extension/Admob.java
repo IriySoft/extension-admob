@@ -27,7 +27,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-//import java.util.Arrays;
 //https://developers.google.com/admob/android/quick-start?hl=en
 
 public class Admob extends Extension
@@ -39,8 +38,7 @@ public class Admob extends Extension
 	private static AppOpenAd _appOpen;
 	private static ConsentInformation _consentInformation;
 	private static HaxeObject _callback;
-
-	private static final String TAG = "AdMob JExt";
+	private static final String TAG = "AdMob Ext";
 
 	private static void dispatchCallback(String event, Object[] args) {
 		mainActivity.runOnUiThread(new Runnable() {
